@@ -33,3 +33,46 @@
     transform: rotate(360deg);
   }
 }
+
+button,
+input[type='checkbox'] {
+  cursor: pointer;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  width: 500px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.remove-item {
+  border: none;
+  background-color: crimson;
+  color: whitesmoke;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: all 0.1s ease-in-out;
+}
+
+.remove-item:hover {
+  scale: 1.1;
+}
+
+.remove-item:active {
+  scale: 1;
+}
+
+.task-done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

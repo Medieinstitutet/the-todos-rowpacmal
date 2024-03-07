@@ -1,11 +1,11 @@
-import getTodos from './services/todoService';
 import './styles/App.css';
+import TodoApp from './components/TodoApp';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Todo List</h1>
-    </div>
+    <main className="App">
+      <TodoApp />
+    </main>
   );
 }
 
