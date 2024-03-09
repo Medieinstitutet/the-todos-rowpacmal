@@ -1,3 +1,4 @@
+import { IconTrash } from '@tabler/icons-react';
 import SortTodoList from './SortTodoList';
 
 const ShowTodoList = ({ todos, setTodos }) => {
@@ -26,24 +27,29 @@ const ShowTodoList = ({ todos, setTodos }) => {
       {todos.length > 0 ? (
         todos.map((data) => (
           <li
-            className="list-item"
+            className={
+              data.done ? 'todo-list-item task-done' : 'todo-list-item'
+            }
             key={data.id}
           >
-            <input
-              type="checkbox"
-              checked={data.done && true}
-              onChange={() => {
+            <button
+              onClick={() => {
                 handleTaskStatus(data.id);
               }}
-            />
-            <span className={data.done ? 'task-done' : null}>{data.task}</span>
+            >
+              {data.done ? 'X' : 'C'}
+            </button>
+            <span>
+              {data.date.day} {data.date.month.slice(0, 3)}
+            </span>
+            <span>{data.task}</span>
             <button
               className="remove-item"
               onClick={() => {
                 handleRemoveTask(data.id);
               }}
             >
-              &#10006;
+              <IconTrash />
             </button>
           </li>
         ))

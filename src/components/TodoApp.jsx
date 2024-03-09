@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import ShowTodoList from './ShowTodoList';
 import CreateNewTodo from './CreateNewTodo';
-
-import SortTodoList from './SortTodoList';
 import ManageTodoList from './ManageTodoList';
 
 const TodoApp = () => {
@@ -15,20 +13,22 @@ const TodoApp = () => {
   }, [todos]);
 
   return (
-    <section>
-      <header>
-        <h2>Todo List</h2>
-      </header>
-      <CreateNewTodo
-        todos={todos}
-        setTodos={setTodos}
-      />
-      <ShowTodoList
-        todos={todos}
-        setTodos={setTodos}
-      />
-      <ManageTodoList setTodos={setTodos} />
-    </section>
+    <div className="todo-app-wrapper">
+      <section className="todo-app">
+        <header>
+          <h2>Todo List</h2>
+        </header>
+        <CreateNewTodo
+          todos={todos}
+          setTodos={setTodos}
+        />
+        <ShowTodoList
+          todos={todos}
+          setTodos={setTodos}
+        />
+        <ManageTodoList setTodos={setTodos} />
+      </section>
+    </div>
   );
 };
 

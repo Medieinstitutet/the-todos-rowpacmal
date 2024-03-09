@@ -1,78 +1,60 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
+.app {
+  color: #282b44;
+  background-color: #eee;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.app-header {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5rem 0;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  & h1 {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & p {
+    opacity: 0.75;
   }
 }
 
-.App-link {
-  color: #61dafb;
+.todo-app-wrapper {
+  color: #eee;
+  background-color: #282b44;
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-button,
-input[type='checkbox'] {
-  cursor: pointer;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
+.todo-app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .todo-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  list-style: none;
-  width: 500px;
-}
-
-.list-item {
-  display: flex;
-  justify-content: space-between;
   gap: 1rem;
 }
 
-.remove-item {
-  border: none;
-  background-color: crimson;
-  color: whitesmoke;
-  font-weight: bold;
-  border-radius: 2px;
-  transition: all 0.1s ease-in-out;
-}
+.todo-list-item {
+  text-align: center;
+  background-color: #14192d;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
 
-.remove-item:hover {
-  scale: 1.1;
-}
-
-.remove-item:active {
-  scale: 1;
+  & span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .task-done {
-  text-decoration: line-through;
-  opacity: 0.5;
+  background-color: #21d1aa;
 }

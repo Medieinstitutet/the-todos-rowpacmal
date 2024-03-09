@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Api from '../utils/config';
+import getTodaysDate from '../utils/getTodaysDate';
 
 const TodoService = {
   createApiKey: async (email) => {
@@ -29,10 +30,13 @@ const TodoService = {
       const response = await axios.get(
         `${Api.baseUrl}todos?apikey=${Api.key}&amount=${amount}&randomdone=false`
       );
+      const data = await response.data;
 
-      // localStorage.setItem('todos', JSON.stringify(response.data));
+      data.forEach((d) => {
+        d.date = getTodaysDate();
+      });
 
-      return await response.data;
+      return data;
     } catch (error) {
       console.error(error);
     }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TodoItem from '../models/TodoItem';
 import createRandomId from '../utils/createRandomId';
+import getTodaysDate from '../utils/getTodaysDate';
 
 const CreateNewTodo = ({ todos, setTodos }) => {
   const [textInput, setTextInput] = useState('');
@@ -12,7 +13,7 @@ const CreateNewTodo = ({ todos, setTodos }) => {
         id = createRandomId();
       }
     });
-    setTodos([new TodoItem(id, task), ...todos]);
+    setTodos([new TodoItem(id, task, getTodaysDate()), ...todos]);
   };
 
   const handleSubmit = (e) => {

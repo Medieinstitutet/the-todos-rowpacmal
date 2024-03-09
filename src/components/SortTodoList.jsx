@@ -1,3 +1,4 @@
+import { IconArrowsSort } from '@tabler/icons-react';
 import { useState } from 'react';
 
 const SortTodoList = ({ todos, setTodos }) => {
@@ -25,10 +26,10 @@ const SortTodoList = ({ todos, setTodos }) => {
   return (
     <li>
       <span onClick={handleSortByDone}>
-        {sortByDone ? 'Status \u2193' : 'Status \u2191'}
+        <IconArrowsSort /> Status
       </span>
       <span onClick={handleSortByName}>
-        {sortByName ? 'Task \u2193' : 'Task \u2191'}
+        <IconArrowsSort /> Task
       </span>
     </li>
   );
