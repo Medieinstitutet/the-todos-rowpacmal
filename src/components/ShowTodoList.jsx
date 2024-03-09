@@ -1,20 +1,29 @@
-import {
-  IconSquare,
-  IconSquareCheck,
-  IconSquareX,
-  IconTrash,
-  IconX,
-} from '@tabler/icons-react';
+import { IconSquare, IconSquareCheck, IconSquareX } from '@tabler/icons-react';
 import SortTodoList from './SortTodoList';
 
 const ShowTodoList = ({ todos, setTodos }) => {
   const handleTaskStatus = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) todo.done = todo.done ? false : true;
-        return todo;
-      })
-    );
+    const sortByDone = localStorage.getItem('sortByDone');
+    const updateStatus = todos.map((todo) => {
+      if (todo.id === id) todo.done = todo.done ? false : true;
+      return todo;
+    });
+
+    if (sortByDone !== 'none')
+      setTodos(
+        updateStatus.sort((a, b) => {
+          switch (sortByDone) {
+            case 'descending':
+              return b.done - a.done;
+
+            case 'ascending':
+            default:
+              return a.done - b.done;
+          }
+        })
+      );
+
+    setTodos(updateStatus);
   };
 
   const handleRemoveTask = (id) => {

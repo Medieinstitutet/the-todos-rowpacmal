@@ -126,7 +126,7 @@
 
 .list-manager {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
 
   & button {
@@ -166,11 +166,20 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 1.5rem;
 
   & span {
     user-select: none;
   }
+}
+
+.current-sort {
+  background-color: #14192d;
+  padding: 0.25rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  box-shadow: 3px 3px 5px #14192d44;
 }
 
 .todo-sort-button {
@@ -179,6 +188,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.todo-sort-button:hover {
+  scale: 1.1;
 }
 
 .todo-checkbox,
@@ -205,7 +219,11 @@
 }
 
 .task-done {
-  background-color: #21d1aa;
+  opacity: 0.5;
+
+  & p {
+    text-decoration: line-through;
+  }
 }
 
 .highlight-text {

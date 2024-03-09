@@ -1,4 +1,6 @@
 import {
+  IconCheckbox,
+  IconSortAZ,
   IconSortAscendingLetters,
   IconSortAscendingSmallBig,
   IconSortDeacendingSmallBig,
@@ -8,7 +10,7 @@ import { useEffect, useState } from 'react';
 
 const SortTodoList = ({ todos, setTodos }) => {
   const [sortByDone, setSortByDone] = useState(
-    localStorage.getItem('sortByDone') || 'none'
+    localStorage.getItem('sortByDone') || 'ascending'
   );
   const [sortByName, setSortByName] = useState(
     localStorage.getItem('sortByName') || 'none'
@@ -17,7 +19,7 @@ const SortTodoList = ({ todos, setTodos }) => {
   useEffect(() => {
     if (todos.length === 0) {
       setSortByName('none');
-      setSortByDone('none');
+      setSortByDone('ascending');
     }
   }, [todos.length]);
 
@@ -63,7 +65,7 @@ const SortTodoList = ({ todos, setTodos }) => {
   };
 
   return (
-    todos.length !== 0 && (
+    todos.length > 1 && (
       <li className="todo-sort">
         <button
           onClick={handleSortByDone}
@@ -76,6 +78,9 @@ const SortTodoList = ({ todos, setTodos }) => {
           )}
           Status
         </button>
+        <span className="current-sort">
+          {sortByDone !== 'none' ? <IconCheckbox /> : <IconSortAZ />}
+        </span>
         <button
           onClick={handleSortByName}
           className="todo-sort-button"

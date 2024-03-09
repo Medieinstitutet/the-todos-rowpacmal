@@ -3,8 +3,9 @@ import TodoService from '../services/TodoService';
 
 const ManageTodoList = ({ setTodos }) => {
   const handleNewList = async () => {
+    const newList = await TodoService.getTodos(10);
     setTodos([]);
-    setTodos(await TodoService.getTodos(10));
+    setTodos(newList.sort((a, b) => a.done - b.done));
   };
 
   const handleClearList = () => {

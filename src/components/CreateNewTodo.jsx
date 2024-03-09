@@ -15,7 +15,23 @@ const CreateNewTodo = ({ todos, setTodos }) => {
         id = createRandomId();
       }
     });
-    setTodos([new TodoItem(id, task, getTodaysDate()), ...todos]);
+    const sortByDone = localStorage.getItem('sortByDone');
+    const listWithNewTask = [new TodoItem(id, task, getTodaysDate()), ...todos];
+    if (sortByDone !== 'none')
+      setTodos(
+        listWithNewTask.sort((a, b) => {
+          switch (sortByDone) {
+            case 'descending':
+              return b.done - a.done;
+
+            case 'ascending':
+            default:
+              return a.done - b.done;
+          }
+        })
+      );
+
+    setTodos(listWithNewTask);
   };
 
   const handleSubmit = (e) => {
