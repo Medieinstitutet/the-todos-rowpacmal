@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ShowTodoList from './ShowTodoList';
 import CreateNewTodo from './CreateNewTodo';
 import ManageTodoList from './ManageTodoList';
+import ScrollToTop from './ScrollToTop';
 
 const TodoApp = () => {
   const [todos, setTodos] = useState(
@@ -29,6 +30,7 @@ const TodoApp = () => {
           todos={todos}
           setTodos={setTodos}
         />
+        <ScrollToTop todos={todos} />
       </section>
     </div>
   );

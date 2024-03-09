@@ -91,11 +91,11 @@
   border-radius: 2rem;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   box-shadow: 3px 3px 5px #14192d44;
 
   & input {
     width: 100%;
-    margin-right: 1rem;
     background: none;
     border: none;
     padding: 0 1rem;
@@ -130,6 +130,7 @@
   justify-content: center;
 
   & button {
+    background-color: #14192d;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,6 +140,7 @@
     font-size: 1.25rem;
     box-shadow: 3px 3px 5px #14192d44;
     transition: all 0.2s ease-in-out;
+    min-width: 200px;
     height: 50px;
   }
 
@@ -152,21 +154,11 @@
   }
 }
 
-.create-list-button,
-.clear-list-button {
-  min-width: 200px;
+.create-list-button:hover {
+  background-color: #21d1aa;
 }
 
-.search-list-button,
-.create-list-button {
-  background-color: #14192d;
-}
-
-.search-list-button {
-  width: 50px;
-}
-
-.clear-list-button {
+.clear-list-button:hover {
   background-color: #ff7b7b;
 }
 
@@ -224,4 +216,20 @@
   margin-top: 2.5rem;
   font-size: 1.25rem;
   font-style: italic;
+}
+
+.back-to-top-button {
+  background: none;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  filter: drop-shadow(3px 3px 5px #14192d44);
+}
+
+.back-to-top-button:hover {
+  scale: 1.2;
+}
+
+.back-to-top-button:active {
+  scale: 1;
+  transition: 0.1s;
 }
