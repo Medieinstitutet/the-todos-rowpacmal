@@ -58,12 +58,13 @@ const CreateNewTodo = ({ todos, setTodos }) => {
         )}
         <label className="add-new-item">
           <input
-            type="search"
+            type="text"
             placeholder="Add a new task..."
             value={textInput}
             onChange={(e) => {
               setTextInput(e.target.value);
             }}
+            className="test"
           />
           <div>
             <button>

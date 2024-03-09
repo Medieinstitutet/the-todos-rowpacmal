@@ -135,12 +135,11 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 2rem;
     border: none;
     font-size: 1.25rem;
-    box-shadow: 3px 3px 5px #14192d44;
-    transition: all 0.2s ease-in-out;
-    min-width: 200px;
+    filter: drop-shadow(3px 3px 5px #14192d44);
+    transition: box-shadow 0.4s, scale 0.2s ease-in-out;
+
     height: 50px;
   }
 
@@ -150,16 +149,27 @@
 
   & button:active {
     scale: 1;
-    transition: 0.1s;
+    transition: scale 0.1s ease-in-out;
   }
 }
 
+.show-progress-button {
+  min-width: 50px;
+  border-radius: 2rem;
+}
+
+.create-list-button,
+.clear-list-button {
+  min-width: 200px;
+  border-radius: 0.5rem;
+}
+
 .create-list-button:hover {
-  background-color: #21d1aa;
+  box-shadow: inset 250px 0 0 -50px #21d1aa;
 }
 
 .clear-list-button:hover {
-  background-color: #ff7b7b;
+  box-shadow: inset 250px 0 0 -50px #ff7b7b;
 }
 
 .todo-sort {
@@ -250,4 +260,40 @@
 .back-to-top-button:active {
   scale: 1;
   transition: 0.1s;
+}
+
+.progressbar-wrapper {
+  margin-top: 2rem;
+}
+
+.progressbar {
+  position: relative;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 0.5rem;
+  user-select: none;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #21d1aa;
+  height: 50px;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.progressbar-percentage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #14192d;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  z-index: 3;
 }

@@ -25,7 +25,10 @@ const TodoApp = () => {
           todos={todos}
           setTodos={setTodos}
         />
-        <ManageTodoList setTodos={setTodos} />
+        <ManageTodoList
+          todos={todos}
+          setTodos={setTodos}
+        />
         <ShowTodoList
           todos={todos}
           setTodos={setTodos}
