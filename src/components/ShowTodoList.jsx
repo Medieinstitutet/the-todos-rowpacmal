@@ -8,7 +8,7 @@ const ShowTodoList = ({ todos, setTodos }) => {
   const handleTaskStatus = (id) => {
     setTodos(
       todos.map((todo) => {
-        if (todo.id === id) return { ...todo, done: todo.done ? false : true };
+        if (todo.id === id) todo.done = todo.done ? false : true;
         return todo;
       })
     );

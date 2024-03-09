@@ -32,6 +32,7 @@ const getCurrentMonth = (monthIndex) => {
 const getTodaysDate = () => ({
   day: new Date().getDate(),
   month: getCurrentMonth(new Date().getMonth()),
+  full: new Date(),
 });
 
 export default getTodaysDate;

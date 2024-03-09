@@ -5,11 +5,11 @@
 }
 
 .app-header {
-  text-transform: uppercase;
   text-align: center;
   padding: 5rem 0;
 
   & h1 {
+    text-transform: uppercase;
     font-size: 3rem;
     display: flex;
     justify-content: center;
@@ -43,6 +43,7 @@
   text-align: center;
   background-color: #14192d;
   border-radius: 0.5rem;
+  box-shadow: 3px 3px 5px #14192d44;
   padding: 1.5rem;
   display: flex;
   gap: 1rem;
