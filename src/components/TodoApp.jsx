@@ -15,8 +15,10 @@ const TodoApp = () => {
   return (
     <div className="todo-app-wrapper">
       <section className="todo-app">
-        <header>
-          <h2>Todo List</h2>
+        <header className="todo-app-header">
+          <h2>
+            <span>To Do</span> List
+          </h2>
         </header>
         <CreateNewTodo
           todos={todos}

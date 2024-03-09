@@ -12,12 +12,18 @@ const ManageTodoList = ({ setTodos }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleNewList}>
-        <IconPlaylistAdd /> Create
-      </button>{' '}
-      <button onClick={handleClearList}>
-        <IconClearAll /> Clear
+    <div className="list-manager">
+      <button
+        onClick={handleNewList}
+        className="create-list-button"
+      >
+        <IconPlaylistAdd size={'1.5rem'} /> Create
+      </button>
+      <button
+        onClick={handleClearList}
+        className="clear-list-button"
+      >
+        <IconClearAll size={'1.5rem'} /> Clear
       </button>
     </div>
   );

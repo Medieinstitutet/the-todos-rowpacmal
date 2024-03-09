@@ -73,7 +73,7 @@ const SortTodoList = ({ todos, setTodos }) => {
             <IconSortDeacendingSmallBig />
           ) : (
             <IconSortAscendingSmallBig />
-          )}{' '}
+          )}
           Status
         </button>
         <button
@@ -84,7 +84,7 @@ const SortTodoList = ({ todos, setTodos }) => {
             <IconSortDescendingLetters />
           ) : (
             <IconSortAscendingLetters />
-          )}{' '}
+          )}
           Name
         </button>
       </li>

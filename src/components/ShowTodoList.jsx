@@ -1,10 +1,13 @@
-import { IconTrash } from '@tabler/icons-react';
+import {
+  IconSquare,
+  IconSquareCheck,
+  IconSquareX,
+  IconTrash,
+  IconX,
+} from '@tabler/icons-react';
 import SortTodoList from './SortTodoList';
 
 const ShowTodoList = ({ todos, setTodos }) => {
-  const noTodosMessage =
-    'There is no tasks in your list, please add new tasks...';
-
   const handleTaskStatus = (id) => {
     setTodos(
       todos.map((todo) => {
@@ -30,30 +33,31 @@ const ShowTodoList = ({ todos, setTodos }) => {
             className={'todo-list-item' + (data.done ? ' task-done' : '')}
             key={data.id}
           >
-            <input
-              type="checkbox"
-              checked={data.done && true}
-              onChange={() => {
-                handleTaskStatus(data.id);
-              }}
-              className="todo-checkbox"
-            />
-            <span>
-              {data.date.day} {data.date.month.slice(0, 3)}
-            </span>
-            <span>{data.task}</span>
-            <button
-              className="remove-item-button"
-              onClick={() => {
-                handleRemoveTask(data.id);
-              }}
-            >
-              <IconTrash />
-            </button>
+            <div>
+              <button
+                onClick={() => {
+                  handleTaskStatus(data.id);
+                }}
+                className="todo-checkbox"
+              >
+                {data.done ? <IconSquareCheck /> : <IconSquare />}
+              </button>
+            </div>
+            <p>{data.task}</p>
+            <div>
+              <button
+                className="remove-item-button"
+                onClick={() => {
+                  handleRemoveTask(data.id);
+                }}
+              >
+                <IconSquareX />
+              </button>
+            </div>
           </li>
         ))
       ) : (
-        <li>{noTodosMessage}</li>
+        <li className="empty-todo-list">Tasks all done! Ready for more?</li>
       )}
     </ul>
   );

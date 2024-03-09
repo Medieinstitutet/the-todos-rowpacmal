@@ -6,6 +6,7 @@ import { IconPlus } from '@tabler/icons-react';
 
 const CreateNewTodo = ({ todos, setTodos }) => {
   const [textInput, setTextInput] = useState('');
+  const [validateInput, setValidateInput] = useState(false);
 
   const handleNewTask = (task) => {
     let id = createRandomId();
@@ -19,25 +20,41 @@ const CreateNewTodo = ({ todos, setTodos }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (textInput.length > 0) handleNewTask(textInput);
+    if (textInput.length > 0) {
+      handleNewTask(textInput);
+      setValidateInput(false);
+    } else {
+      setValidateInput(true);
+    }
     setTextInput('');
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="New task..."
-          value={textInput}
-          onChange={(e) => {
-            setTextInput(e.target.value);
-          }}
-        />
-        <button>
-          <IconPlus />
-          Add
-        </button>
+      <form
+        onSubmit={handleSubmit}
+        className="todo-list-form"
+      >
+        {validateInput && (
+          <p className="highlight-text input-validation">
+            *Please enter a task to add
+          </p>
+        )}
+        <label className="add-new-item">
+          <input
+            type="search"
+            placeholder="Add a new task..."
+            value={textInput}
+            onChange={(e) => {
+              setTextInput(e.target.value);
+            }}
+          />
+          <div>
+            <button>
+              <IconPlus />
+            </button>
+          </div>
+        </label>
       </form>
     </>
   );
