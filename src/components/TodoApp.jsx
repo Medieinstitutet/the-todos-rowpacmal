@@ -22,11 +22,11 @@ const TodoApp = () => {
           todos={todos}
           setTodos={setTodos}
         />
+        <ManageTodoList setTodos={setTodos} />
         <ShowTodoList
           todos={todos}
           setTodos={setTodos}
         />
-        <ManageTodoList setTodos={setTodos} />
       </section>
     </div>
   );

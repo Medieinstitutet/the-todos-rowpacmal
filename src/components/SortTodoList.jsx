@@ -1,52 +1,92 @@
 import {
-  IconSortAscending2,
   IconSortAscendingLetters,
-  IconSortDescending2,
+  IconSortAscendingSmallBig,
+  IconSortDeacendingSmallBig,
   IconSortDescendingLetters,
 } from '@tabler/icons-react';
-import { useState } from 'react';
-
-const sortByState = (sort) =>
-  JSON.parse(localStorage.getItem(sort)) ? false : true;
+import { useEffect, useState } from 'react';
 
 const SortTodoList = ({ todos, setTodos }) => {
-  const [sortByDone, setSortByDone] = useState(sortByState('sortByDone'));
-  const [sortByName, setSortByName] = useState(sortByState('sortByName'));
+  const [sortByDone, setSortByDone] = useState(
+    localStorage.getItem('sortByDone') || 'none'
+  );
+  const [sortByName, setSortByName] = useState(
+    localStorage.getItem('sortByName') || 'none'
+  );
+
+  useEffect(() => {
+    if (todos.length === 0) {
+      setSortByName('none');
+      setSortByDone('none');
+    }
+  }, [todos.length]);
+
+  useEffect(() => {
+    localStorage.setItem('sortByDone', sortByDone);
+    localStorage.setItem('sortByName', sortByName);
+  }, [sortByDone, sortByName]);
 
   const handleSortByDone = () => {
-    setSortByDone(!sortByDone);
     setTodos(
-      [...todos].sort((a, b) =>
-        sortByDone ? a.done - b.done : b.done - a.done
-      )
+      [...todos].sort((a, b) => {
+        switch (sortByDone) {
+          case 'ascending':
+            setSortByDone('descending');
+            return b.done - a.done;
+
+          case 'descending':
+          default:
+            setSortByDone('ascending');
+            return a.done - b.done;
+        }
+      })
     );
-    localStorage.setItem('sortByDone', sortByDone);
+    setSortByName('none');
   };
 
   const handleSortByName = () => {
-    setSortByName(!sortByName);
     setTodos(
-      [...todos].sort((a, b) =>
-        sortByName ? a.task.localeCompare(b.task) : b.task.localeCompare(a.task)
-      )
+      [...todos].sort((a, b) => {
+        switch (sortByName) {
+          case 'ascending':
+            setSortByName('descending');
+            return b.task.localeCompare(a.task);
+
+          case 'descending':
+          default:
+            setSortByName('ascending');
+            return a.task.localeCompare(b.task);
+        }
+      })
     );
-    localStorage.setItem('sortByName', sortByName);
+    setSortByDone('none');
   };
 
   return (
     todos.length !== 0 && (
-      <li>
-        <span onClick={handleSortByDone}>
-          {sortByDone ? <IconSortDescending2 /> : <IconSortAscending2 />} Status
-        </span>
-        <span onClick={handleSortByName}>
-          {sortByName ? (
+      <li className="todo-sort">
+        <button
+          onClick={handleSortByDone}
+          className="todo-sort-button"
+        >
+          {sortByDone === 'descending' ? (
+            <IconSortDeacendingSmallBig />
+          ) : (
+            <IconSortAscendingSmallBig />
+          )}{' '}
+          Status
+        </button>
+        <button
+          onClick={handleSortByName}
+          className="todo-sort-button"
+        >
+          {sortByName === 'descending' ? (
             <IconSortDescendingLetters />
           ) : (
             <IconSortAscendingLetters />
           )}{' '}
           Name
-        </span>
+        </button>
       </li>
     )
   );

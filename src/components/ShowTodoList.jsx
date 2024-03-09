@@ -27,24 +27,23 @@ const ShowTodoList = ({ todos, setTodos }) => {
       {todos.length > 0 ? (
         todos.map((data) => (
           <li
-            className={
-              data.done ? 'todo-list-item task-done' : 'todo-list-item'
-            }
+            className={'todo-list-item' + (data.done ? ' task-done' : '')}
             key={data.id}
           >
-            <button
-              onClick={() => {
+            <input
+              type="checkbox"
+              checked={data.done && true}
+              onChange={() => {
                 handleTaskStatus(data.id);
               }}
-            >
-              {data.done ? 'X' : 'C'}
-            </button>
+              className="todo-checkbox"
+            />
             <span>
               {data.date.day} {data.date.month.slice(0, 3)}
             </span>
             <span>{data.task}</span>
             <button
-              className="remove-item"
+              className="remove-item-button"
               onClick={() => {
                 handleRemoveTask(data.id);
               }}

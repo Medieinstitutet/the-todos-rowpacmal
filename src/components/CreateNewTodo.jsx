@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TodoItem from '../models/TodoItem';
 import createRandomId from '../utils/createRandomId';
 import getTodaysDate from '../utils/getTodaysDate';
+import { IconPlus } from '@tabler/icons-react';
 
 const CreateNewTodo = ({ todos, setTodos }) => {
   const [textInput, setTextInput] = useState('');
@@ -33,7 +34,10 @@ const CreateNewTodo = ({ todos, setTodos }) => {
             setTextInput(e.target.value);
           }}
         />
-        <button>Add</button>
+        <button>
+          <IconPlus />
+          Add
+        </button>
       </form>
     </>
   );

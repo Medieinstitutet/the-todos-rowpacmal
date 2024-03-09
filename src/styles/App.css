@@ -56,6 +56,27 @@
   }
 }
 
+.remove-item-button,
+.todo-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.todo-sort {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.todo-sort-button {
+  color: inherit;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .task-done {
   background-color: #21d1aa;
 }
