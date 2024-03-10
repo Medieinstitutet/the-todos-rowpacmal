@@ -6,7 +6,9 @@
 
 .app-header {
   text-align: center;
-  padding: 5rem 0;
+  padding: 8rem 0 0;
+  max-width: 600px;
+  margin: 0 auto;
 
   & h1 {
     text-transform: uppercase;
@@ -22,6 +24,35 @@
   }
 }
 
+.app-header-button-wrapper {
+  display: flex;
+  justify-content: start;
+  margin: 6rem 2rem 0;
+
+  & button {
+    position: relative;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    border: none;
+    font-size: 1.25rem;
+    transition: all 0.2s ease-in-out;
+    height: 80px;
+    width: 80px;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  & button:hover {
+    top: 0px;
+  }
+}
+
+.tab-button-active {
+  color: #eee;
+  background-color: #282b44;
+}
+
 .todo-app-wrapper {
   color: #eee;
   background-color: #282b44;
@@ -31,7 +62,7 @@
 .todo-app {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: center;
 }
 
@@ -139,7 +170,6 @@
     font-size: 1.25rem;
     filter: drop-shadow(3px 3px 5px #14192d44);
     transition: box-shadow 0.4s, scale 0.2s ease-in-out;
-
     height: 50px;
   }
 
@@ -174,7 +204,7 @@
 
 .todo-sort {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 
   & span {
