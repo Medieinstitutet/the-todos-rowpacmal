@@ -16,17 +16,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    user-select: none;
   }
 
   & p {
     opacity: 0.75;
   }
+
+  & h1,
+  & p {
+    cursor: default;
+  }
 }
 
 .app-header-button-wrapper {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 6rem 2rem 0;
 
   & button {
@@ -69,8 +73,9 @@
 .todo-app-header {
   margin: 1rem 0;
 
-  h2 {
+  & h2 {
     font-size: 2rem;
+    cursor: default;
 
     & span {
       text-transform: uppercase;
@@ -96,9 +101,10 @@
   align-items: center;
   transition: all 0.3s ease-in-out;
 
-  & span {
+  & p {
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: default;
   }
 }
 
@@ -208,7 +214,7 @@
   align-items: center;
 
   & span {
-    user-select: none;
+    cursor: default;
   }
 }
 
@@ -276,6 +282,14 @@
   font-style: italic;
 }
 
+.back-to-top-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 .back-to-top-button {
   background: none;
   border: none;
@@ -293,7 +307,7 @@
 }
 
 .progressbar-wrapper {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .progressbar {
@@ -301,7 +315,7 @@
   height: 50px;
   background-color: #eee;
   border-radius: 0.5rem;
-  user-select: none;
+  cursor: default;
   overflow: hidden;
 }
 

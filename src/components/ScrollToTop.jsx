@@ -10,7 +10,7 @@ const ScrollToTop = ({ todos }) => {
 
   return (
     todos.length > 5 && (
-      <footer>
+      <footer className="back-to-top-wrapper">
         <button
           onClick={backToTop}
           className="back-to-top-button"
