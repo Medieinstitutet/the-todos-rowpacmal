@@ -25,10 +25,15 @@ const TodoService = {
     }
   },
 
-  getTodos: async (amount) => {
+  getTodos: async (amount, isRandomDone = false) => {
+    let randomDone = '';
+    if (isRandomDone) {
+      randomDone = '&randomdone=true';
+    }
+
     try {
       const response = await axios.get(
-        `${Api.baseUrl}todos?apikey=${Api.key}&amount=${amount}&randomdone=true`
+        `${Api.baseUrl}todos?apikey=${Api.key}&amount=${amount}${randomDone}`
       );
       const data = await response.data;
 

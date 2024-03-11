@@ -9,14 +9,11 @@ const CreateNewTodo = ({ todos, setTodos, history, setHistory }) => {
   const [validateInput, setValidateInput] = useState(false);
 
   const handleNewTask = (task) => {
-    let id = createRandomId();
-    todos.forEach((todo) => {
-      while (id === todo.id) {
-        id = createRandomId();
-      }
-    });
+    const id = createRandomId();
+    const date = getTodaysDate();
+    const listWithNewTask = [new TodoItem(id, task, date), ...todos];
     const sortByDone = localStorage.getItem('sortByDone');
-    const listWithNewTask = [new TodoItem(id, task, getTodaysDate()), ...todos];
+    setHistory([...listWithNewTask]);
     if (sortByDone !== 'none')
       setTodos(
         listWithNewTask.sort((a, b) => {
@@ -30,8 +27,6 @@ const CreateNewTodo = ({ todos, setTodos, history, setHistory }) => {
           }
         })
       );
-
-    setHistory([...listWithNewTask, ...history]);
     setTodos(listWithNewTask);
   };
 

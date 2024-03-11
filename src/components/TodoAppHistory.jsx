@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconClearAll, IconSearch } from '@tabler/icons-react';
 import ShowHistory from './ShowHistory';
 import ScrollToTop from './ScrollToTop';
 
 const TodoAppHistory = ({ todos, setTodos, history, setHistory }) => {
   const [searchInput, setSearchInput] = useState('');
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  useEffect(() => {
+    const handleSearch = () => {
+      setSearchHistory(
+        history.filter((search) =>
+          search.task.toLowerCase().includes(searchInput.toLowerCase())
+        )
+      );
+    };
+    handleSearch();
+  }, [history, searchInput]);
 
   const handleClearHistory = () => {
+    setSearchHistory([]);
     setHistory([]);
   };
 
@@ -17,7 +30,9 @@ const TodoAppHistory = ({ todos, setTodos, history, setHistory }) => {
           <h2>History</h2>
         </header>
         <form
-          onSubmit={() => {}}
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
           className="todo-list-form"
         >
           <label className="add-new-item">
@@ -45,8 +60,22 @@ const TodoAppHistory = ({ todos, setTodos, history, setHistory }) => {
             <IconClearAll size={'1.5rem'} /> Clear All
           </button>
         </div>
-        <ShowHistory history={history} />
-        {history.length > 5 && <ScrollToTop />}
+        {searchInput.length > 0 ? (
+          searchHistory.length > 0 ? (
+            <ShowHistory history={searchHistory} />
+          ) : (
+            <ul className="history-list">
+              <li className="empty-todo-list">No search results found.</li>
+            </ul>
+          )
+        ) : history.length > 0 ? (
+          <ShowHistory history={history} />
+        ) : (
+          <ul className="history-list">
+            <li className="empty-todo-list">No task history found.</li>
+          </ul>
+        )}
+        {history.length > 5 && searchHistory.length > 5 && <ScrollToTop />}
       </section>
     </div>
   );

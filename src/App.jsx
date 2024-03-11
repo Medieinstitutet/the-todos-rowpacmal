@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import AppHeader from './components/AppHeader';
 import TodoApp from './components/TodoApp';
 import TodoAppHistory from './components/TodoAppHistory';
+import AppFooter from './components/AppFooter';
 
 function App() {
   const [toggleTab, setToggleTab] = useState(true);
@@ -41,6 +42,7 @@ function App() {
           setHistory={setHistory}
         />
       )}
+      <AppFooter />
     </main>
   );
 }

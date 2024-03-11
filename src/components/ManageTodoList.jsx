@@ -21,8 +21,7 @@ const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
     newList.forEach((task) => {
       task.id = createRandomId();
     });
-    const reversedList = [...newList].reverse();
-    setHistory([...reversedList, ...history]);
+    setHistory([...newList, ...history]);
     setTodos([]);
     setTodos([...newList, ...todos].sort((a, b) => a.done - b.done));
   };
