@@ -1,18 +1,9 @@
-import { useState, useEffect } from 'react';
 import ShowTodoList from './ShowTodoList';
 import CreateNewTodo from './CreateNewTodo';
 import ManageTodoList from './ManageTodoList';
 import ScrollToTop from './ScrollToTop';
 
-const TodoApp = () => {
-  const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem('todos')) || []
-  );
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
+const TodoApp = ({ todos, setTodos, history, setHistory }) => {
   return (
     <div className="todo-app-wrapper">
       <section className="todo-app">
@@ -28,12 +19,14 @@ const TodoApp = () => {
         <ManageTodoList
           todos={todos}
           setTodos={setTodos}
+          history={history}
+          setHistory={setHistory}
         />
         <ShowTodoList
           todos={todos}
           setTodos={setTodos}
         />
-        <ScrollToTop todos={todos} />
+        {todos.length > 5 && <ScrollToTop />}
       </section>
     </div>
   );

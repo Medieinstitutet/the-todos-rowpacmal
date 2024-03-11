@@ -30,10 +30,14 @@ const getCurrentMonth = (monthIndex) => {
 };
 
 const getTodaysDate = () => ({
-  full: new Date(),
+  full: new Date().toLocaleDateString(),
   day: new Date().getDate(),
   month: getCurrentMonth(new Date().getMonth()),
   year: new Date().getFullYear(),
+  time: new Date().toLocaleTimeString(navigator.language, {
+    hour: '2-digit',
+    minute: '2-digit',
+  }),
 });
 
 export default getTodaysDate;

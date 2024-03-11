@@ -8,7 +8,7 @@ import TodoService from '../services/TodoService';
 import ProgressBar from './ProgressBar';
 import { useState } from 'react';
 
-const ManageTodoList = ({ todos, setTodos }) => {
+const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
   const [showProgress, setShowProgress] = useState(false);
 
   const handleShowProgress = () => {
@@ -17,8 +17,10 @@ const ManageTodoList = ({ todos, setTodos }) => {
 
   const handleNewList = async () => {
     const newList = await TodoService.getTodos(10);
+    const reversedList = [...newList].reverse();
     setTodos([]);
     setTodos(newList.sort((a, b) => a.done - b.done));
+    setHistory([...reversedList, ...history].slice(0, 15));
   };
 
   const handleClearList = () => {

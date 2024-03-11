@@ -4,7 +4,11 @@ import {
   IconListDetails,
 } from '@tabler/icons-react';
 
-function AppHeader() {
+function AppHeader({ toggleTab, setToggleTab }) {
+  const handleToggleTab = () => {
+    setToggleTab(!toggleTab);
+  };
+
   return (
     <header className="app-header">
       <div>
@@ -14,10 +18,25 @@ function AppHeader() {
         <p>Clear. Simple. Done.</p>
       </div>
       <div className="app-header-button-wrapper">
-        <button className="tab-button-active">
+        <button
+          className={toggleTab ? 'tab-button-active' : null}
+          onClick={() => {
+            if (toggleTab) {
+              return;
+            }
+            handleToggleTab();
+          }}
+        >
           <IconListDetails size={'2rem'} />
         </button>
-        <button>
+        <button
+          className={toggleTab ? null : 'tab-button-active'}
+          onClick={() => {
+            if (toggleTab) {
+              handleToggleTab();
+            }
+          }}
+        >
           <IconCalendarMonth size={'2rem'} />
         </button>
       </div>
