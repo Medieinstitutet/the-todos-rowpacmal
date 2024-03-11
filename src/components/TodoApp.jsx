@@ -15,6 +15,8 @@ const TodoApp = ({ todos, setTodos, history, setHistory }) => {
         <CreateNewTodo
           todos={todos}
           setTodos={setTodos}
+          history={history}
+          setHistory={setHistory}
         />
         <ManageTodoList
           todos={todos}

@@ -90,6 +90,7 @@
   }
 }
 
+.history-list,
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -97,6 +98,18 @@
   margin: 2rem 0;
 }
 
+/*
+.history-list {
+  gap: 1.75rem;
+}
+*/
+
+.history-list-item {
+  position: relative;
+  cursor: default;
+}
+
+.history-list-item,
 .todo-list-item {
   background-color: #14192d;
   border-radius: 0.5rem;
@@ -115,10 +128,41 @@
   }
 }
 
+.history-list-item:hover,
 .todo-list-item:hover,
 .todo-list-form:hover {
   scale: 1.05;
 }
+
+.history-list-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/*
+.task-status-success::before,
+.task-status-fail::before {
+  position: absolute;
+  bottom: -0.75rem;
+  left: calc(50% - 50px);
+  height: 1.5rem;
+  width: 100px;
+  border-radius: 0.5rem;
+}
+
+.task-status-success::before {
+  content: 'Success';
+  background-color: #21d1aa;
+}
+
+.task-status-fail::before {
+  content: 'Fail';
+  background-color: #ff7b7b;
+}
+*/
 
 .todo-list-form {
   margin: 2rem 0;

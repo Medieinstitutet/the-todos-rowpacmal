@@ -4,7 +4,7 @@ import createRandomId from '../utils/createRandomId';
 import getTodaysDate from '../utils/getTodaysDate';
 import { IconPlus } from '@tabler/icons-react';
 
-const CreateNewTodo = ({ todos, setTodos }) => {
+const CreateNewTodo = ({ todos, setTodos, history, setHistory }) => {
   const [textInput, setTextInput] = useState('');
   const [validateInput, setValidateInput] = useState(false);
 
@@ -31,6 +31,7 @@ const CreateNewTodo = ({ todos, setTodos }) => {
         })
       );
 
+    setHistory([...listWithNewTask, ...history]);
     setTodos(listWithNewTask);
   };
 
