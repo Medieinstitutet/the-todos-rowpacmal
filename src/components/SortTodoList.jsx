@@ -17,12 +17,12 @@ const SortTodoList = ({
   setSortByName,
 }) => {
   const handleSortByDone = () => {
-    setTodos(SortBy.done(todos, sortByDone, setSortByDone));
+    setTodos(SortBy.done.switch(todos, sortByDone, setSortByDone));
     setSortByName('none');
   };
 
   const handleSortByName = () => {
-    setTodos(SortBy.name(todos, sortByName, setSortByName));
+    setTodos(SortBy.name.switch(todos, sortByName, setSortByName));
     setSortByDone('none');
   };
 

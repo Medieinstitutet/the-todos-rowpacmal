@@ -1,9 +1,16 @@
 import { IconCalendar, IconClock, IconNote } from '@tabler/icons-react';
+import SortBy from '../utils/SortBy';
 
-const ShowHistory = ({ history }) => {
+const ShowHistory = ({ history, isSearching = false, sortByName = null }) => {
+  let sortedHistory = history;
+
+  isSearching
+    ? (sortedHistory = SortBy.name.noSwitch(history, sortByName))
+    : (sortedHistory = SortBy.epoch(history));
+
   return (
     <ul className="history-list">
-      {history.map((record, index) => (
+      {sortedHistory.map((record, index) => (
         <li
           key={index}
           className="history-list-item"

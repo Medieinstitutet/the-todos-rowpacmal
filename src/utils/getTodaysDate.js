@@ -42,6 +42,7 @@ const getTodaysDate = () => ({
     hour: '2-digit',
     minute: '2-digit',
   }),
+  epoch: new Date().getTime(),
 });
 
 export default getTodaysDate;

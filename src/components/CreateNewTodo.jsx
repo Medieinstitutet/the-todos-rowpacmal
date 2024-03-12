@@ -3,8 +3,18 @@ import TodoItem from '../models/TodoItem';
 import createRandomId from '../utils/createRandomId';
 import getTodaysDate from '../utils/getTodaysDate';
 import { IconPlus } from '@tabler/icons-react';
+import SortBy from '../utils/SortBy';
 
-const CreateNewTodo = ({ todos, setTodos, history, setHistory }) => {
+const CreateNewTodo = ({
+  todos,
+  setTodos,
+  history,
+  setHistory,
+  sortByDone,
+  setSortByDone,
+  sortByName,
+  setSortByName,
+}) => {
   const [textInput, setTextInput] = useState('');
   const [validateInput, setValidateInput] = useState(false);
 
@@ -12,22 +22,15 @@ const CreateNewTodo = ({ todos, setTodos, history, setHistory }) => {
     const id = createRandomId();
     const date = getTodaysDate();
     const listWithNewTask = [new TodoItem(id, task, date), ...todos];
-    const sortByDone = localStorage.getItem('sortByDone');
     setHistory([...listWithNewTask]);
     if (sortByDone !== 'none')
       setTodos(
-        listWithNewTask.sort((a, b) => {
-          switch (sortByDone) {
-            case 'descending':
-              return b.done - a.done;
-
-            case 'ascending':
-            default:
-              return a.done - b.done;
-          }
-        })
+        SortBy.done.noSwitch(listWithNewTask, sortByDone, setSortByDone)
       );
-    setTodos(listWithNewTask);
+    if (sortByName !== 'none')
+      setTodos(
+        SortBy.name.noSwitch(listWithNewTask, sortByName, setSortByName)
+      );
   };
 
   const handleSubmit = (e) => {

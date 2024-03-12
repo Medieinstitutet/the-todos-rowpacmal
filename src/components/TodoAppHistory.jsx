@@ -3,7 +3,7 @@ import { IconClearAll, IconSearch } from '@tabler/icons-react';
 import ShowHistory from './ShowHistory';
 import ScrollToTop from './ScrollToTop';
 
-const TodoAppHistory = ({ todos, setTodos, history, setHistory }) => {
+const TodoAppHistory = ({ history, setHistory, sortByName }) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchHistory, setSearchHistory] = useState([]);
 
@@ -62,7 +62,11 @@ const TodoAppHistory = ({ todos, setTodos, history, setHistory }) => {
         </div>
         {searchInput.length > 0 ? (
           searchHistory.length > 0 ? (
-            <ShowHistory history={searchHistory} />
+            <ShowHistory
+              history={searchHistory}
+              isSearching={true}
+              sortByName={sortByName}
+            />
           ) : (
             <ul className="history-list">
               <li className="empty-todo-list">No search results found.</li>

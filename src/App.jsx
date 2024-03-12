@@ -56,10 +56,9 @@ function App() {
         />
       ) : (
         <TodoAppHistory
-          todos={todos}
-          setTodos={setTodos}
           history={history}
           setHistory={setHistory}
+          sortByName={sortByName}
         />
       )}
       <AppFooter />

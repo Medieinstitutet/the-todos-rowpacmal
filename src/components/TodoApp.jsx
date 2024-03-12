@@ -26,6 +26,10 @@ const TodoApp = ({
           setTodos={setTodos}
           history={history}
           setHistory={setHistory}
+          sortByDone={sortByDone}
+          setSortByDone={setSortByDone}
+          sortByName={sortByName}
+          setSortByName={setSortByName}
         />
         <ManageTodoList
           todos={todos}
