@@ -3,7 +3,16 @@ import CreateNewTodo from './CreateNewTodo';
 import ManageTodoList from './ManageTodoList';
 import ScrollToTop from './ScrollToTop';
 
-const TodoApp = ({ todos, setTodos, history, setHistory }) => {
+const TodoApp = ({
+  todos,
+  setTodos,
+  history,
+  setHistory,
+  sortByDone,
+  setSortByDone,
+  sortByName,
+  setSortByName,
+}) => {
   return (
     <div className="todo-app-wrapper">
       <section className="todo-app">
@@ -27,6 +36,10 @@ const TodoApp = ({ todos, setTodos, history, setHistory }) => {
         <ShowTodoList
           todos={todos}
           setTodos={setTodos}
+          sortByDone={sortByDone}
+          setSortByDone={setSortByDone}
+          sortByName={sortByName}
+          setSortByName={setSortByName}
         />
         {todos.length > 5 && <ScrollToTop />}
       </section>

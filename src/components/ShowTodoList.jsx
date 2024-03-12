@@ -1,7 +1,14 @@
 import { IconSquare, IconSquareCheck, IconSquareX } from '@tabler/icons-react';
 import SortTodoList from './SortTodoList';
 
-const ShowTodoList = ({ todos, setTodos }) => {
+const ShowTodoList = ({
+  todos,
+  setTodos,
+  sortByDone,
+  setSortByDone,
+  sortByName,
+  setSortByName,
+}) => {
   const handleTaskStatus = (id) => {
     const sortByDone = localStorage.getItem('sortByDone');
     const updateStatus = todos.map((todo) => {
@@ -35,6 +42,10 @@ const ShowTodoList = ({ todos, setTodos }) => {
       <SortTodoList
         todos={todos}
         setTodos={setTodos}
+        sortByDone={sortByDone}
+        setSortByDone={setSortByDone}
+        sortByName={sortByName}
+        setSortByName={setSortByName}
       />
       {todos.length > 0 ? (
         todos.map((data) => (

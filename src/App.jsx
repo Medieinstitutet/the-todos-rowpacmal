@@ -13,6 +13,12 @@ function App() {
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem('history')) || []
   );
+  const [sortByDone, setSortByDone] = useState(
+    localStorage.getItem('sortByDone') || 'ascending'
+  );
+  const [sortByName, setSortByName] = useState(
+    localStorage.getItem('sortByName') || 'none'
+  );
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -20,6 +26,16 @@ function App() {
   useEffect(() => {
     localStorage.setItem('history', JSON.stringify(history));
   }, [history]);
+  useEffect(() => {
+    if (todos.length === 0) {
+      setSortByName('none');
+      setSortByDone('ascending');
+    }
+  }, [todos.length]);
+  useEffect(() => {
+    localStorage.setItem('sortByDone', sortByDone);
+    localStorage.setItem('sortByName', sortByName);
+  }, [sortByDone, sortByName]);
 
   return (
     <main className="app">
@@ -33,6 +49,10 @@ function App() {
           setTodos={setTodos}
           history={history}
           setHistory={setHistory}
+          sortByDone={sortByDone}
+          setSortByDone={setSortByDone}
+          sortByName={sortByName}
+          setSortByName={setSortByName}
         />
       ) : (
         <TodoAppHistory
