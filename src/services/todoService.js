@@ -27,6 +27,7 @@ const TodoService = {
 
   getTodos: async (amount, isRandomDone = false) => {
     let randomDone = '';
+
     if (isRandomDone) {
       randomDone = '&randomdone=true';
     }

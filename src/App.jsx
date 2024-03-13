@@ -68,6 +68,7 @@ function App() {
         <TodoAppHistory
           history={history}
           setHistory={setHistory}
+          SortBy={SortBy}
           sortByName={sortByName}
         />
       )}

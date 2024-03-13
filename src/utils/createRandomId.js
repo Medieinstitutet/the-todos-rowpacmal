@@ -6,6 +6,7 @@ const createRandomId = () => {
       currentDate.getMilliseconds() * randomNumb +
       randomNumb
   );
+
   return Number(id)
     .toString(32)
     .padStart(15, currentDate.getMilliseconds().toString());

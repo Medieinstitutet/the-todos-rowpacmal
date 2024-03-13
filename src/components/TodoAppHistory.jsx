@@ -3,7 +3,7 @@ import { IconClearAll, IconSearch } from '@tabler/icons-react';
 import ShowHistory from './ShowHistory';
 import ScrollToTop from './ScrollToTop';
 
-const TodoAppHistory = ({ history, setHistory, sortByName }) => {
+const TodoAppHistory = ({ history, setHistory, SortBy, sortByName }) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchHistory, setSearchHistory] = useState([]);
 
@@ -15,6 +15,7 @@ const TodoAppHistory = ({ history, setHistory, sortByName }) => {
         )
       );
     };
+
     handleSearch();
   }, [history, searchInput]);
 
@@ -23,12 +24,45 @@ const TodoAppHistory = ({ history, setHistory, sortByName }) => {
     setHistory([]);
   };
 
+  const handleShowHistory = () => {
+    const emptyList = (text) => (
+      <ul className="history-list">
+        <li className="empty-todo-list">{text}</li>
+      </ul>
+    );
+
+    if (searchInput.length > 0) {
+      if (searchHistory.length > 0)
+        return (
+          <ShowHistory
+            history={searchHistory}
+            SortBy={SortBy}
+            isSearching={true}
+            sortByName={sortByName}
+          />
+        );
+
+      return emptyList('No search results found.');
+    } else {
+      if (history.length > 0)
+        return (
+          <ShowHistory
+            history={history}
+            SortBy={SortBy}
+          />
+        );
+
+      return emptyList('No task history found.');
+    }
+  };
+
   return (
     <div className="todo-app-wrapper">
       <section className="todo-app">
         <header className="todo-app-header">
           <h2>History</h2>
         </header>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -45,6 +79,7 @@ const TodoAppHistory = ({ history, setHistory, sortByName }) => {
               }}
               className="test"
             />
+
             <div>
               <button>
                 <IconSearch />
@@ -52,6 +87,7 @@ const TodoAppHistory = ({ history, setHistory, sortByName }) => {
             </div>
           </label>
         </form>
+
         <div className="list-manager">
           <button
             onClick={handleClearHistory}
@@ -60,25 +96,8 @@ const TodoAppHistory = ({ history, setHistory, sortByName }) => {
             <IconClearAll size={'1.5rem'} /> Clear All
           </button>
         </div>
-        {searchInput.length > 0 ? (
-          searchHistory.length > 0 ? (
-            <ShowHistory
-              history={searchHistory}
-              isSearching={true}
-              sortByName={sortByName}
-            />
-          ) : (
-            <ul className="history-list">
-              <li className="empty-todo-list">No search results found.</li>
-            </ul>
-          )
-        ) : history.length > 0 ? (
-          <ShowHistory history={history} />
-        ) : (
-          <ul className="history-list">
-            <li className="empty-todo-list">No task history found.</li>
-          </ul>
-        )}
+
+        {handleShowHistory()}
         {history.length > 5 && searchHistory.length > 5 && <ScrollToTop />}
       </section>
     </div>

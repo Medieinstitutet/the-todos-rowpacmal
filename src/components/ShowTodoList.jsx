@@ -14,6 +14,7 @@ const ShowTodoList = ({
       if (todo.id === id) todo.done = todo.done ? false : true;
       return todo;
     });
+
     handleSortedBasedOnState(updateStatus);
   };
 
