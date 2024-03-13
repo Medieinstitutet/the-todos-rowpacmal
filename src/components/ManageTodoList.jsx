@@ -9,7 +9,13 @@ import ProgressBar from './ProgressBar';
 import { useState } from 'react';
 import createRandomId from '../utils/createRandomId';
 
-const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
+const ManageTodoList = ({
+  todos,
+  setTodos,
+  history,
+  setHistory,
+  handleSortedBasedOnState,
+}) => {
   const [showProgress, setShowProgress] = useState(false);
 
   const handleShowProgress = () => {
@@ -18,12 +24,14 @@ const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
 
   const handleNewList = async () => {
     const newList = await TodoService.getTodos(5);
+
     newList.forEach((task) => {
       task.id = createRandomId();
     });
+
     setHistory([...newList, ...history]);
     setTodos([]);
-    setTodos([...newList, ...todos].sort((a, b) => a.done - b.done));
+    handleSortedBasedOnState([...newList, ...todos]);
   };
 
   const handleClearList = () => {
@@ -45,12 +53,14 @@ const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
             )}
           </button>
         )}
+
         <button
           onClick={handleNewList}
           className="create-list-button"
         >
           <IconPlaylistAdd size={'1.5rem'} /> Random
         </button>
+
         <button
           onClick={handleClearList}
           className="clear-list-button"
@@ -58,6 +68,7 @@ const ManageTodoList = ({ todos, setTodos, history, setHistory }) => {
           <IconClearAll size={'1.5rem'} /> Clear All
         </button>
       </div>
+
       {showProgress && <>{todos.length > 0 && <ProgressBar todos={todos} />}</>}
     </>
   );

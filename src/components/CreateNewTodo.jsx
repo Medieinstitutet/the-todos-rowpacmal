@@ -3,18 +3,8 @@ import TodoItem from '../models/TodoItem';
 import createRandomId from '../utils/createRandomId';
 import getTodaysDate from '../utils/getTodaysDate';
 import { IconPlus } from '@tabler/icons-react';
-import SortBy from '../utils/SortBy';
 
-const CreateNewTodo = ({
-  todos,
-  setTodos,
-  history,
-  setHistory,
-  sortByDone,
-  setSortByDone,
-  sortByName,
-  setSortByName,
-}) => {
+const CreateNewTodo = ({ todos, setHistory, handleSortedBasedOnState }) => {
   const [textInput, setTextInput] = useState('');
   const [validateInput, setValidateInput] = useState(false);
 
@@ -22,25 +12,22 @@ const CreateNewTodo = ({
     const id = createRandomId();
     const date = getTodaysDate();
     const listWithNewTask = [new TodoItem(id, task, date), ...todos];
+
     setHistory([...listWithNewTask]);
-    if (sortByDone !== 'none')
-      setTodos(
-        SortBy.done.noSwitch(listWithNewTask, sortByDone, setSortByDone)
-      );
-    if (sortByName !== 'none')
-      setTodos(
-        SortBy.name.noSwitch(listWithNewTask, sortByName, setSortByName)
-      );
+    handleSortedBasedOnState(listWithNewTask);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (textInput.length > 0) {
       handleNewTask(textInput);
+
       setValidateInput(false);
     } else {
       setValidateInput(true);
     }
+
     setTextInput('');
   };
 
@@ -55,6 +42,7 @@ const CreateNewTodo = ({
             *Please enter a task to add
           </p>
         )}
+
         <label className="add-new-item">
           <input
             type="text"
@@ -65,6 +53,7 @@ const CreateNewTodo = ({
             }}
             className="test"
           />
+
           <div>
             <button>
               <IconPlus />

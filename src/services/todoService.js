@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Api from '../utils/config';
+import Api from '../utils/Api';
 import getTodaysDate from '../utils/getTodaysDate';
 
 const TodoService = {

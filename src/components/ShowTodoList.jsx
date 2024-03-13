@@ -5,32 +5,16 @@ const ShowTodoList = ({
   todos,
   setTodos,
   sortByDone,
-  setSortByDone,
   sortByName,
-  setSortByName,
+  handleSortBy,
+  handleSortedBasedOnState,
 }) => {
   const handleTaskStatus = (id) => {
-    const sortByDone = localStorage.getItem('sortByDone');
     const updateStatus = todos.map((todo) => {
       if (todo.id === id) todo.done = todo.done ? false : true;
       return todo;
     });
-
-    if (sortByDone !== 'none')
-      setTodos(
-        updateStatus.sort((a, b) => {
-          switch (sortByDone) {
-            case 'descending':
-              return b.done - a.done;
-
-            case 'ascending':
-            default:
-              return a.done - b.done;
-          }
-        })
-      );
-
-    setTodos(updateStatus);
+    handleSortedBasedOnState(updateStatus);
   };
 
   const handleRemoveTask = (id) => {
@@ -41,11 +25,9 @@ const ShowTodoList = ({
     <ul className="todo-list">
       <SortTodoList
         todos={todos}
-        setTodos={setTodos}
         sortByDone={sortByDone}
-        setSortByDone={setSortByDone}
         sortByName={sortByName}
-        setSortByName={setSortByName}
+        handleSortBy={handleSortBy}
       />
       {todos.length > 0 ? (
         todos.map((data) => (
@@ -63,7 +45,9 @@ const ShowTodoList = ({
                 {data.done ? <IconSquareCheck /> : <IconSquare />}
               </button>
             </div>
+
             <p>{data.task}</p>
+
             <div>
               <button
                 className="remove-item-button"

@@ -6,24 +6,14 @@ import {
   IconSortDeacendingSmallBig,
   IconSortDescendingLetters,
 } from '@tabler/icons-react';
-import SortBy from '../utils/SortBy';
 
-const SortTodoList = ({
-  todos,
-  setTodos,
-  sortByDone,
-  setSortByDone,
-  sortByName,
-  setSortByName,
-}) => {
+const SortTodoList = ({ todos, sortByDone, sortByName, handleSortBy }) => {
   const handleSortByDone = () => {
-    setTodos(SortBy.done.switch(todos, sortByDone, setSortByDone));
-    setSortByName('none');
+    handleSortBy('done');
   };
 
   const handleSortByName = () => {
-    setTodos(SortBy.name.switch(todos, sortByName, setSortByName));
-    setSortByDone('none');
+    handleSortBy('name');
   };
 
   return (

@@ -5,10 +5,13 @@ const ProgressBar = ({ todos }) => {
 
   useEffect(() => {
     let doneCount = 0;
+
     todos.forEach((todo) => {
       todo.done && doneCount++;
     });
+
     const calculateFill = (doneCount / todos.length) * 100;
+
     setFilled(calculateFill.toFixed(0));
   }, [todos]);
 
@@ -19,8 +22,10 @@ const ProgressBar = ({ todos }) => {
           className="progress"
           style={{ width: `${filled}%` }}
         ></div>
+
         <div className="progressbar-percentage">
           <span>{filled}</span>
+
           <span>%</span>
         </div>
       </div>
