@@ -1,7 +1,11 @@
 import { IconCalendar, IconClock, IconNote } from '@tabler/icons-react';
-import SortBy from '../utils/SortBy';
 
-const ShowHistory = ({ history, isSearching = false, sortByName = null }) => {
+const ShowHistory = ({
+  history,
+  SortBy,
+  isSearching = false,
+  sortByName = null,
+}) => {
   let sortedHistory = history;
 
   isSearching
@@ -19,11 +23,15 @@ const ShowHistory = ({ history, isSearching = false, sortByName = null }) => {
             <IconCalendar />
             {record.date.full}
           </div>
+
           <p className="history-list-note">
-            <IconNote /> {record.task}
+            <IconNote />
+            {record.task}
           </p>
+
           <div className="history-list-note">
-            <IconClock /> {record.date.time}
+            <IconClock />
+            {record.date.time}
           </div>
         </li>
       ))}
